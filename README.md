@@ -1,6 +1,6 @@
 
 Tic-Tac-Toe Game
-This is a simple Tic-Tac-Toe game built using React and Vite. The game allows two players to take turns in a 3x3 grid, marking 'X' or 'O'. The game checks for winning conditions after each move and allows the players to reset the game when it's over , and also to go back to previous moves.
+This is a simple Tic-Tac-Toe game built using Reactjs and Vite. The game allows two players to take turns in a 3x3 grid, marking 'X' or 'O'. The game checks for winning conditions after each move and allows the players to reset the game when it's over , and also to go back to previous moves.
 
 Demo : <br>
 ![screenshot](tic.png)
@@ -10,7 +10,9 @@ Features: <br>
 Two-player gameplay (Player 1: 'X' and Player 2: 'O').<br>
 Winning condition detection (horizontal, vertical, and diagonal).<br>
 Reset button to restart the game.<br>
+Move button to go back to previous moves.<br>
 React-based UI with state management.<br>
+Interactive CSS<br>
 ______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 Technologies Used : <br>
