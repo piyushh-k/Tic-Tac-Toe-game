@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <center>
-        <Board />
+        <Game />
       </center>
     </>
   );
