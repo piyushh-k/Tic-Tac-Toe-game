@@ -1,10 +1,11 @@
-import Board from "./square";
+
+import Game from "./square";
 
 function App() {
   return (
     <>
       <center>
-        <Board />
+        <Game />
       </center>
     </>
   );

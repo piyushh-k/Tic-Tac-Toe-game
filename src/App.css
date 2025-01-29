@@ -1,22 +1,81 @@
-.square {
-  width: 100px; /* Set the width */
-  height: 100px; /* Set the height */
-  font-size: 24px; /* Adjust text size inside the square */
-  text-align: center; /* Center the text horizontally */
-  vertical-align: middle; /* Center the text vertically */
-  border: 1px solid #000; /* Add a border for visibility */
-  background-color: #f9f9f9; /* Light background color */
-  cursor: pointer; /* Add a pointer cursor for better UX */
+html, body {
+  overflow-x: hidden; 
+  height: 100%;
 }
 
-.Board{
-  margin-top: 350px;
-  justify-items: center;
+.square {
+  width: 100px;
+  height: 100px;
+  font-size: 34px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #E17564;
+  background-color: #BE3144;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+.Board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  padding: 20px;
+  margin-top: 250px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 0px;
+  margin-bottom: 0%;
+}
+
+.status {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 21px;
+  margin-top: 20px;
+  padding: 15px 25px;
+  text-align: center;
+  display: block;
+  z-index: 10;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+  transition: all 0.3s ease-in-out;
+}
+
+.status:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.status:active {
+  transform: translateY(2px) scale(0.98);
+  background-color: rgba(0, 0, 0, 0.9);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
 
 .reset-button {
   margin-top: 40px;
-  background-color: #f30cb9; /* Primary blue */
+  background-color: #E17564;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -24,32 +83,82 @@
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-size: 25px;
 }
 
 .reset-button:hover {
-  background-color: #0056b3; /* Darker blue for hover */
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px); /* Slight upward movement */
+  background-color: #db8e82;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px);
 }
 
 .reset-button:active {
-  background-color: #004085; /* Even darker blue for active */
+  background-color: #004085;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transform: translateY(1px); /* Slight downward movement for press */
+  transform: translateY(1px);
 }
 
 .reset-button:focus {
   outline: none;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.8); /* Focus ring */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.8);
 }
 
+button {
+  background-color: #1C1C1C;
+  color: white;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #E17564;
+  transform: scale(1.05);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 5px 2px rgba(72, 204, 145, 0.5);
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  justify-items: center;
+}
+
+li {
+  margin-bottom: 10px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+li:hover {
+  transform: translateX(10px);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+li {
+  animation: fadeIn 0.6s ease-in-out;
+}
 
 h1 {
   font-size: 2rem;
   font-weight: bold;
-  color: #dfdde4; /* Green color */
+  color: #dfdde4;
   text-align: center;
   margin: 20px 0;
   cursor: pointer;
@@ -58,12 +167,12 @@ h1 {
 }
 
 h1:hover {
-  color: #2196f3; /* Blue color on hover */
-  transform: scale(1.1); /* Slight zoom-in effect */
+  color: #2196f3;
+  transform: scale(1.1);
   text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
 }
 
 h1:active {
-  transform: scale(0.95); /* Shrink slightly when clicked */
-  color: #f44336; /* Red color on click */
+  transform: scale(0.95);
+  color: #f44336;
 }
