@@ -42,5 +42,6 @@ Game Flow:<br>
 The game starts with Player 1 (X) making the first move.<br>
 After each move, the state is updated and checked for a winner.<br>
 The game ends when a winner is found or when all squares are filled. Players can click the "Reset Game" button to restart.
+A history Array is created which keeps track of all the moves made on the board and switch back to previous movves.
 
 ______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
