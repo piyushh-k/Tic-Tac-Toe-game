@@ -2,6 +2,7 @@ import "./App.css";
 import { useState } from "react";
 
 function Square({ value, boxClick }) {
+
   return (
     <button className="square" onClick={boxClick}>
       {value}
@@ -11,8 +12,14 @@ function Square({ value, boxClick }) {
 
 function Win(boxes) {
   if (!Array.isArray(boxes) || boxes.length !== 9) {
-    return null; 
+    return null;
   }
+
+  function checkNull(val) {
+    return val == null;
+  }
+
+  const check = boxes.filter(checkNull);
 
   const winConditions = [
     [0, 1, 2],
@@ -28,10 +35,13 @@ function Win(boxes) {
   for (let i = 0; i < winConditions.length; i++) {
     const [a, b, c] = winConditions[i];
     if (boxes[a] !== null && boxes[a] === boxes[b] && boxes[b] === boxes[c]) {
-      return boxes[a]; 
+      return boxes[a];
+    }
+    if (check.length == 0) {
+      return "Tied";
     }
   }
-  return null; 
+  return null;
 }
 
 function Board({ nextPlayer, boxes, onPlay, Reset }) {
@@ -45,8 +55,15 @@ function Board({ nextPlayer, boxes, onPlay, Reset }) {
   };
 
   const winner = Win(boxes);
-  const status = winner ? `Winner: ${winner}` : `Next Player: ${nextPlayer ? "X" : "O"}`;
-  console.log(status);
+  let status;
+
+  if (winner === "x" || winner === "o") {
+    status = `Winner: ${winner}`;
+  } else if (winner === "Tied") {
+    status = `Game was a draw`;
+  } else {
+    status = nextPlayer ? `Next Player: x` : `Next Player: o`;
+  }
 
   return (
     <>
@@ -79,32 +96,34 @@ function Game() {
   const currentBoxes = history[currentMove];
 
   const Reset = () => {
-    setHistory([Array(9).fill(null)]); 
-    setNext(true); 
+    setHistory([Array(9).fill(null)]);
+    setNext(true);
     setCurrentMove(0);
   };
 
   const jump = (nextMove) => {
     setCurrentMove(nextMove);
-    setNext(nextMove % 2 === 0); 
+    setNext(nextMove % 2 === 0);
   };
 
   const moves = history.map((_, move) => {
     let desc;
     if (move > 0) {
-      desc = 'Go to move #' + move;
+      desc = "Go to move #" + move;
     } else {
-      desc = 'Reset Game';
+      desc = "Reset Game";
     }
     return (
       <li key={move} className="buttons">
-        <button onClick={() => jump(move)} className="moveList">{desc}</button>
+        <button onClick={() => jump(move)} className="moveList">
+          {desc}
+        </button>
       </li>
     );
   });
 
   const handlePlay = (newBoxes) => {
-    const newHistory = [...history.slice(0, currentMove + 1), newBoxes]; 
+    const newHistory = [...history.slice(0, currentMove + 1), newBoxes];
     setHistory(newHistory);
     setCurrentMove(newHistory.length - 1);
     setNext(!isNext);
@@ -113,11 +132,16 @@ function Game() {
   return (
     <div className="game">
       <div className="game-board">
-        <Board nextPlayer={isNext} boxes={currentBoxes} onPlay={handlePlay} Reset={Reset} />
+        <Board
+          nextPlayer={isNext}
+          boxes={currentBoxes}
+          onPlay={handlePlay}
+          Reset={Reset}
+        />
       </div>
       <div className="game-info">
         <h3>Move history</h3>
-        <ul>{moves}</ul> 
+        <ul>{moves}</ul>
       </div>
     </div>
   );
