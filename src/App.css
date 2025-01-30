@@ -3,6 +3,11 @@ html, body {
   height: 100%;
 }
 
+html, body {
+  overflow-x: hidden; 
+  height: 100%;
+}
+
 .square {
   width: 100px;
   height: 100px;

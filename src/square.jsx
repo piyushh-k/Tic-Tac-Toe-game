@@ -1,8 +1,8 @@
 import "./App.css";
 import { useState } from "react";
 
-function Square({ value, boxClick }) {
 
+function Square({ value, boxClick }) {
   return (
     <button className="square" onClick={boxClick}>
       {value}
@@ -10,16 +10,16 @@ function Square({ value, boxClick }) {
   );
 }
 
+
 function Win(boxes) {
   if (!Array.isArray(boxes) || boxes.length !== 9) {
     return null;
   }
 
-  function checkNull(val) {
-    return val == null;
-  }
 
+  const checkNull = (val) => val == null;
   const check = boxes.filter(checkNull);
+
 
   const winConditions = [
     [0, 1, 2],
@@ -35,28 +35,29 @@ function Win(boxes) {
   for (let i = 0; i < winConditions.length; i++) {
     const [a, b, c] = winConditions[i];
     if (boxes[a] !== null && boxes[a] === boxes[b] && boxes[b] === boxes[c]) {
-      return boxes[a];
-    }
-    if (check.length == 0) {
-      return "Tied";
+      return boxes[a]; // Return winner (either "x" or "o")
     }
   }
-  return null;
+
+  if (check.length === 0) {
+    return "Tied";
+  }
+
+  return null; 
 }
 
 function Board({ nextPlayer, boxes, onPlay, Reset }) {
   const handleClick = (i) => {
     const newBoxes = boxes.slice();
     if (newBoxes[i] !== null || Win(boxes)) {
-      return;
+      return; 
     }
     newBoxes[i] = nextPlayer ? "x" : "o";
-    onPlay(newBoxes);
+    onPlay(newBoxes); 
   };
 
-  const winner = Win(boxes);
+  const winner = Win(boxes); 
   let status;
-
   if (winner === "x" || winner === "o") {
     status = `Winner: ${winner}`;
   } else if (winner === "Tied") {
@@ -89,17 +90,20 @@ function Board({ nextPlayer, boxes, onPlay, Reset }) {
   );
 }
 
+
 function Game() {
-  const [isNext, setNext] = useState(true);
-  const [history, setHistory] = useState([Array(9).fill(null)]);
-  const [currentMove, setCurrentMove] = useState(0);
+  const [isNext, setNext] = useState(true); 
+  const [history, setHistory] = useState([Array(9).fill(null)]); 
+  const [currentMove, setCurrentMove] = useState(0); 
   const currentBoxes = history[currentMove];
+
 
   const Reset = () => {
     setHistory([Array(9).fill(null)]);
     setNext(true);
     setCurrentMove(0);
   };
+
 
   const jump = (nextMove) => {
     setCurrentMove(nextMove);
