@@ -27,6 +27,7 @@ Player 1 (X) and Player 2 (O) take turns. When a player clicks a square, their s
 The game checks if there is a winner after each move. If a player wins, their symbol is displayed on the screen.<br>
 If all squares are filled without a winner, the game ends in a draw.<br>
 You can reset the game anytime by clicking the "Reset Game" button.<br>
+You can go back to previous moves by the corresponding buttons. <br>
 ______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 Game Logic:<br>
