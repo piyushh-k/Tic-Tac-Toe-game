@@ -5,6 +5,7 @@ function App() {
   return (
     <>
       <center>
+        <h2>Hello world</h2>
         <Game />
       </center>
     </>
