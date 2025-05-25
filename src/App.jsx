@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <center>
-        <Game />
+        <Game /> //Component where the game logic is written
       </center>
     </>
   );
